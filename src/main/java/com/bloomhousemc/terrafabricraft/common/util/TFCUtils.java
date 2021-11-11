@@ -14,6 +14,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
+
+import static java.lang.Math.pow;
 
 public final class TFCUtils {
     public static final Random RNG = new Random();
@@ -192,6 +195,28 @@ public final class TFCUtils {
                 inventory.set(itemSlot, new ItemStack(Items.AIR));
             }
         }
+    }
+
+    public static boolean shouldPlaceBlock(BlockPos startPos1, BlockPos startPos2, BlockPos startPos3, BlockPos startPos4, BlockPos startPos5, BlockPos startPos6, BlockPos testPos, int radius){
+
+        return 1/(Meatball(startPos1)*Meatball(startPos2)*Meatball(startPos3)*Meatball(startPos4)*Meatball(startPos5)*Meatball(startPos6))*radius<=1/Meatball(testPos);
+
+
+    }
+    public static boolean shouldPlaceBlock(BlockPos startPos1, BlockPos startPos2, BlockPos startPos3, BlockPos startPos4, BlockPos startPos5, BlockPos startPos6, BlockPos startPos7, BlockPos testPos, int radius){
+
+        return 1/(Meatball(startPos1)*Meatball(startPos2)*Meatball(startPos3)*Meatball(startPos4)*Meatball(startPos5)*Meatball(startPos6)*Meatball(startPos7))*radius<=1/Meatball(testPos);
+
+
+    }
+    public static boolean shouldPlaceBlock(BlockPos startPos1, BlockPos startPos2, BlockPos startPos3, BlockPos startPos4, BlockPos startPos5, BlockPos startPos6, BlockPos startPos7, BlockPos startPos8, BlockPos testPos, int radius){
+
+        return 1/(Meatball(startPos1)*Meatball(startPos2)*Meatball(startPos3)*Meatball(startPos4)*Meatball(startPos5)*Meatball(startPos6)*Meatball(startPos7)*Meatball(startPos8))*radius<=1/Meatball(testPos);
+
+
+    }
+    public static double Meatball(BlockPos pos){
+        return Math.sqrt(pow(pos.getX(), 2)+pow(pos.getY(), 2)+pow(pos.getZ(), 2));
     }
 
 }
